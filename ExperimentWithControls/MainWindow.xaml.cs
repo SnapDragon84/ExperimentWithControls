@@ -24,5 +24,15 @@ namespace ExperimentWithControls
         {
             InitializeComponent();
         }
+
+        private void numberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            number.Text = numberTextBox.Text;   //an exception will be thrown here if the TextBlock is not initialized prior to running app
+        }                                       //make sure TextBlock appears before TextBox in Xaml code
+
+        private void numberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !int.TryParse(e.Text, out int result);
+        }
     }
 }
